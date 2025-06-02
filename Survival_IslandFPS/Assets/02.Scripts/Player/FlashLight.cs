@@ -1,26 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-//F키 입력 시 Light ON, F키 재입력 시 Light OFF
-//켜고 끌때 사운드 삽입
+//F키를 누르면 라이트가 켜지고 다시 F키를 누르면 꺼진다
+// 사운드 구현도 같이 : audiosource, audioClip
 public class FlashLight : MonoBehaviour
 {
-    [SerializeField] private Light flashlight;
+    [SerializeField] private Light flashLight;
     [SerializeField] private AudioSource source;
-    public AudioClip lightOn;
+    public AudioClip flashClip;
     void Start()
     {
-        flashlight = GetComponent<Light>();
+        flashLight = GetComponent<Light>();
         source = GetComponent<AudioSource>();
     }
-
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
+        if(Input.GetKeyDown(KeyCode.F))
         {
-            flashlight.enabled = !flashlight.enabled;
-            source.PlayOneShot(lightOn, 1.0f);
+            flashLight.enabled = !flashLight.enabled;
+            source.PlayOneShot(flashClip, 1.0f);
         }
+          
+        
     }
 }

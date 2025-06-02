@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class RainStop : MonoBehaviour
 {
-    public GameObject rainPrefab;
-    public GameObject rainObj;
+    public GameObject rainPrefab; //비 프리팹
+    public GameObject rainObj; //비 오브젝트
+
     void Start()
     {
-        rainObj = Instantiate(rainPrefab);  //rainprefab을 인스턴스화 하여 rainObj에 저장
-        //rainObj.transform.position = new Vector3(-250f, 0, 0);
+        rainObj = Instantiate(rainPrefab); //비 프리팹을 인스턴스화하여 rainObj에 저장
+       
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Destroy(rainObj);
+            Destroy(rainObj); //비 오브젝트 삭제
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            rainObj = Instantiate(rainPrefab);
+            rainObj = Instantiate(rainPrefab); //비 프리팹을 인스턴스화하여 rainObj에 저장
+          
         }
     }
+
+
 }

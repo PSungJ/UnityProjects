@@ -1,47 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-// Left Shift + W 동시 입력 시 총을 접는 애니메이션을 재생하는 스크립트
-// 두 키중 하나라도 떼면 애니메이션이 멈추고 총을 겨누는 애니메이션이 재생되도록 구현
+// 왼쪽 쉬프트 키와 w키를 동시에 눌렀을 때  총을 접는 애니메이션을 재생하는 스크립트 구현
+//왼쪽 쉬프트 키와 w키 둘중에 하나라도 떼면 애니메이션이 멈추고 총을 겨누는 애니메이션이 재생되도록 구현
 public class PlayerHandAnimation : MonoBehaviour
 {
-    public Animation ani;
-    private readonly string running = "running";
-    private readonly string runStop = "runStop";
-    private readonly string fire = "fire";
+    public Animation anim;
+    private readonly string runAni = "running";
+    private readonly string runStopAni = "runStop";
+    private readonly string FireAni = "fire";
+    private readonly string FireInput = "Fire1";
     bool isRunning;
     void Start()
-    {   // 자기자신의 자식 오브젝트를 찾고, 그 자식의 자식 오브젝트를 찾는다
-        ani = transform.GetChild(0).GetChild(0).GetComponent<Animation>();
-        //ani = GetComponentsInChildren<Animation>()[0];
-        isRunning = false;
+    {    
+        //자기자신의 첫번째 자식 오브젝트를 찾고 그 자식의  오브젝트의 첫번째 자식 오브젝트를 찾는다
+        anim = transform.GetChild(0).GetChild(0).GetComponent<Animation>();
+        isRunning = false;        
     }
+
 
     void Update()
     {
-        PlayerRun();
+        PlayerRunAni();
         PlayerFire();
+
     }
 
     public void PlayerFire()
     {
-        if (Input.GetButtonDown("Fire1") && !isRunning)
+        if (Input.GetButtonDown(FireInput) && !isRunning)
         {
-            ani.Play(fire);
+            anim.Play(FireAni);
         }
     }
 
-    private void PlayerRun()
+    private void PlayerRunAni()
     {
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKey(KeyCode.W))
         {
-            ani.Play(running);
+            anim.Play(runAni);
             isRunning = true;
         }
         else if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            ani.Play(runStop);
+            anim.Play(runStopAni);
             isRunning = false;
         }
     }
