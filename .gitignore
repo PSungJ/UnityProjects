@@ -73,3 +73,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Rocket2DGame/ProjectSettings/ProjectVersion.txt
+Rocket2DGame/Temp/FSTimeGet-ca9c9040319d2634baddfd9b56b7e64a
+Rocket2DGame/Temp/UnityLockfile
